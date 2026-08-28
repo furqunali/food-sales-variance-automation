@@ -5,13 +5,13 @@
 **Turn 7 messy monthly source files — spreadsheets, a scanned PDF, and phone screenshots —
 into one verified workbook and a self-contained, director-ready dashboard. In one command.**
 
-[![Live Demo](https://img.shields.io/badge/▶_Live_Demo-GitHub_Pages-1baf7a?style=for-the-badge)](https://GH_USER.github.io/food-sales-variance-automation/)
-[![CI](https://github.com/GH_USER/food-sales-variance-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/GH_USER/food-sales-variance-automation/actions/workflows/ci.yml)
+[![Live Demo](https://img.shields.io/badge/▶_Live_Demo-GitHub_Pages-1baf7a?style=for-the-badge)](https://furqanali.github.io/food-sales-variance-automation/)
+[![CI](https://github.com/furqanali/food-sales-variance-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/furqanali/food-sales-variance-automation/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 ![Zero dependencies](https://img.shields.io/badge/demo-zero_dependencies-success)
 
-**[▶ Open the live interactive demo](https://GH_USER.github.io/food-sales-variance-automation/)** &nbsp;·&nbsp; no data or install required
+**[▶ Open the live interactive demo](https://furqanali.github.io/food-sales-variance-automation/)** &nbsp;·&nbsp; no data or install required
 
 </div>
 
@@ -67,7 +67,7 @@ the finished dashboard back against the original documents.
 ## 🚀 Try it locally
 
 ```bash
-git clone https://github.com/GH_USER/food-sales-variance-automation.git
+git clone https://github.com/furqanali/food-sales-variance-automation.git
 cd food-sales-variance-automation
 
 python sample/generate_sample.py     # builds demo/dashboard-demo.html (no deps)
@@ -97,12 +97,12 @@ the story: **[docs/CASE_STUDY.md](docs/CASE_STUDY.md)**.
 ```
 food-sales-variance-automation/
 ├── src/                     Production pipeline (runs against the private workbook)
-│   ├── build_dashboard.py       extract verified figures → inject into template
+│   ├── build_dashboard.py       extract verified figures -> inject into template
 │   ├── verify_month.py          consistency + month-over-month checks
 │   ├── flag_review.py           3-month-average deviation flags + approvals
-│   ├── verify_sources.py        dashboard ↔ workbook ↔ source cross-check
+│   ├── verify_sources.py        dashboard <-> workbook <-> source cross-check
 │   ├── dashboard_template.html  the dashboard shell (4 JSON placeholders)
-│   └── FIELD_SOURCE_CELL_MAP.md every field → its source → its cell
+│   └── FIELD_SOURCE_CELL_MAP.md every field -> its source -> its cell
 ├── sample/
 │   ├── generate_sample.py       build a runnable demo from synthetic data
 │   └── sample_data.json         the generated synthetic dataset
@@ -120,9 +120,9 @@ under `data/`) and run in sequence:
 ```bash
 pip install -r requirements.txt
 python src/verify_month.py       # consistency + MoM swings for the latest month
-python src/flag_review.py        # trend-deviation flags → review → --approve all
+python src/flag_review.py        # trend-deviation flags -> review -> --approve all
 python src/build_dashboard.py    # rebuild the dashboard from the workbook
-python src/verify_sources.py     # cross-check dashboard ↔ workbook ↔ sources
+python src/verify_sources.py     # cross-check dashboard <-> workbook <-> sources
 ```
 
 The workbook itself is written with **Excel COM** (it holds charts, drawings, and embedded

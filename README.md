@@ -5,13 +5,13 @@
 **Turn 7 messy monthly source files — spreadsheets, a scanned PDF, and phone screenshots —
 into one verified workbook and a self-contained, director-ready dashboard. In one command.**
 
-[![Live Demo](https://img.shields.io/badge/▶_Live_Demo-GitHub_Pages-1baf7a?style=for-the-badge)](https://furqanali.github.io/food-sales-variance-automation/)
-[![CI](https://github.com/furqanali/food-sales-variance-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/furqanali/food-sales-variance-automation/actions/workflows/ci.yml)
+[![Live Demo](https://img.shields.io/badge/▶_Live_Demo-GitHub_Pages-1baf7a?style=for-the-badge)](https://furqunali.github.io/food-sales-variance-automation/)
+[![CI](https://github.com/furqunali/food-sales-variance-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/furqunali/food-sales-variance-automation/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 ![Zero dependencies](https://img.shields.io/badge/demo-zero_dependencies-success)
 
-**[▶ Open the live interactive demo](https://furqanali.github.io/food-sales-variance-automation/)** &nbsp;·&nbsp; no data or install required
+**[▶ Open the live interactive demo](https://furqunali.github.io/food-sales-variance-automation/)** &nbsp;·&nbsp; no data or install required
 
 </div>
 
@@ -67,7 +67,7 @@ the finished dashboard back against the original documents.
 ## 🚀 Try it locally
 
 ```bash
-git clone https://github.com/furqanali/food-sales-variance-automation.git
+git clone https://github.com/furqunali/food-sales-variance-automation.git
 cd food-sales-variance-automation
 
 python sample/generate_sample.py     # builds demo/dashboard-demo.html (no deps)

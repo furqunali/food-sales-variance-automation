@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────────────────────
+#  Confidential business data — NEVER commit these to this public repo.
+#  The real monthly workbook and its source documents live outside the repo
+#  (in production) or in a separate PRIVATE repository.
+# ─────────────────────────────────────────────────────────────
+data/
+*.xlsx
+*.xls
+*.xlsm
+*.pdf
+*.PDF
+# but keep sample generator's JSON output visible for reference:
+!sample/sample_data.json
+
+# Real source-file names / patterns (belt-and-suspenders)
+*Weighted Average*
+*RETAIL DEPT*
+*Cost INIR*
+*Hourly Sales*
+*Price Override*
+*Customer*count*
+*Speed*Service*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

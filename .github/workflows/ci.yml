@@ -1,0 +1,38 @@
+name: CI
+
+# Verifies the runnable demo builds and passes the same integrity rules the real
+# pipeline enforces (Total = C-Store + Kitchen; kitchen mix sums to kitchen sales).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build demo from synthetic data (no external deps)
+        run: python sample/generate_sample.py
+
+      - name: Assert demo dashboard was produced and is data-clean
+        shell: bash
+        run: |
+          test -f demo/dashboard-demo.html || { echo "demo not built"; exit 1; }
+          bytes=$(wc -c < demo/dashboard-demo.html)
+          echo "demo size: ${bytes} bytes"
+          test "$bytes" -gt 40000 || { echo "demo suspiciously small"; exit 1; }
+          # placeholders must be fully substituted
+          ! grep -q "__MONTHLY__\|__EXTRA__\|__MONS__\|__FLAGS__" demo/dashboard-demo.html \
+            || { echo "unsubstituted template placeholder found"; exit 1; }
+          echo "CI checks passed."
+
+      - name: Byte-compile all Python tools
+        run: python -m compileall -q src sample

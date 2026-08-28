@@ -1,0 +1,6 @@
+# Runtime dependencies for the production pipeline.
+# The runnable DEMO (sample/generate_sample.py) needs NONE of these — it is pure
+# standard-library Python. These are only required to run the real pipeline
+# against an actual Excel workbook + source files.
+openpyxl>=3.1        # read/inspect the monthly workbook and .xlsx sources
+pdfplumber>=0.11     # parse the digital Retail Dept Summary PDF in verify_sources

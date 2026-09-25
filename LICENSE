@@ -1,21 +1,32 @@
-MIT License
+Copyright (c) 2026 Furqan Ali. All rights reserved.
 
-Copyright (c) 2026 Furqan Ali
+SOURCE-AVAILABLE — REVIEW-ONLY LICENSE
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This repository is made publicly viewable for evaluation, review and
+demonstration purposes only — for example, by recruiters, collaborators and
+anyone assessing the author's engineering work.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+YOU MAY:
+  * View and read the source code.
+  * Clone or fork the repository solely to review or evaluate it.
+
+YOU MAY NOT, without the PRIOR WRITTEN PERMISSION of the copyright holder
+(Furqan Ali):
+  * Use the code, its logic or its methodology, in whole or in part, in any
+    product, service, report or pipeline — commercial or non-commercial.
+  * Copy, modify, adapt or create derivative works for use.
+  * Redistribute, publish, sublicense, sell, or host copies of the code.
+  * Deploy or run the software to provide functionality to any third party.
+
+No license or right is granted by implication or otherwise, except the limited
+right to view and review stated above.
+
+All figures, stores, employees and data in this repository are FICTITIOUS,
+internally-consistent SAMPLES for demonstration only. No real business data,
+credentials or personal data is included.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+IMPLIED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+To request permission for any use beyond review, contact the copyright holder.

@@ -15,12 +15,14 @@ Run it and open the result — no Excel, no source files, no data needed:
 Everything is deterministic (fixed seed), so the demo is identical on every machine.
 The numbers are invented; they resemble real retail-kitchen economics only in shape.
 """
-import json, os, random
+import json, os, random, sys
 
 random.seed(42)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+sys.path.insert(0, os.path.join(ROOT, "src"))
+import analytics  # AI-CFO insight engine (pure, unit-tested)
 TPL  = os.path.join(ROOT, "src", "dashboard_template.html")
 OUT_JSON = os.path.join(HERE, "sample_data.json")
 OUT_HTML = os.path.join(ROOT, "demo", "dashboard-demo.html")
@@ -126,15 +128,21 @@ def main():
     grp = sum(sum(r["actual"] for r in data[s["id"]]) for s in STORES)
     print(f"  Stores: {len(STORES)}   Months: {MONTHS[0]}-{MONTHS[-1]}   Group YTD actual = ${grp:,.0f}")
 
+    # AI-CFO insights (what changed / why / what to investigate) — same engine the
+    # production pipeline uses; deterministic, no LLM.
+    store_meta = [dict(id=s["id"], name=s["name"]) for s in STORES]
+    insights = analytics.build_insights(MONTHS, data, extra, store_meta)
+
     with open(OUT_JSON, "w", encoding="utf-8") as f:
-        json.dump(dict(months=MONTHS, data=data, extra=extra, flags=flags), f, indent=1)
+        json.dump(dict(months=MONTHS, data=data, extra=extra, flags=flags, insights=insights), f, indent=1)
     print("  Wrote sample data:", os.path.relpath(OUT_JSON, ROOT))
 
     html = open(TPL, encoding="utf-8").read()
     html = (html.replace("__MONTHLY__", json.dumps(data))
                 .replace("__EXTRA__",   json.dumps(extra))
                 .replace("__MONS__",    json.dumps(MONTHS))
-                .replace("__FLAGS__",   json.dumps(flags)))
+                .replace("__FLAGS__",   json.dumps(flags))
+                .replace("__INSIGHTS__", json.dumps(insights)))
     os.makedirs(os.path.dirname(OUT_HTML), exist_ok=True)
     with open(OUT_HTML, "w", encoding="utf-8") as f:
         f.write(html)

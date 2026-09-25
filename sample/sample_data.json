@@ -1164,5 +1164,213 @@
    ]
   }
  },
- "flags": {}
+ "flags": {},
+ "insights": {
+  "group": {
+   "ytd_attainment": 0.6837637741434774,
+   "ytd_variance_pct": -0.3162362258565225,
+   "ytd_actual": 5765877,
+   "ytd_budget": 8432557,
+   "gap_dollars": 2666680,
+   "best_store": {
+    "id": "1001",
+    "name": "Cedar Crossing",
+    "attainment": 0.8150088173767769
+   },
+   "worst_store": {
+    "id": "1004",
+    "name": "Prairie Gate",
+    "attainment": 0.4906209037526126
+   },
+   "headline": "Group at 68.4% of budget YTD (-31.6%). Cedar Crossing leads at 82%; Prairie Gate trails at 49%."
+  },
+  "stores": [
+   {
+    "id": "1001",
+    "name": "Cedar Crossing",
+    "ytd_attainment": 0.8150088173767769,
+    "ytd_variance_pct": -0.18499118262322314,
+    "ytd_actual": 1712305,
+    "ytd_budget": 2100965,
+    "month": "Jul",
+    "prev_month": "Jun",
+    "revenue_change_pct": 0.055106132351449816,
+    "month_attainment": 0.8047037684884399,
+    "month_variance_pct": -0.19529623151156011,
+    "headline": "Cedar Crossing: revenue up 5.5% vs Jun (attainment 80% of budget).",
+    "drivers": [
+     {
+      "key": "avg_ticket",
+      "label": "Average ticket",
+      "dollars": 24583.991483724465,
+      "pct": 0.09996661800237963
+     },
+     {
+      "key": "cstore",
+      "label": "C-Store sales",
+      "dollars": 15488,
+      "pct": 0.07490122304489334
+     },
+     {
+      "key": "customers",
+      "label": "Customer count",
+      "dollars": -10455.99148372445,
+      "pct": -0.040783497350492054
+     },
+     {
+      "key": "kitchen",
+      "label": "Kitchen sales",
+      "dollars": -1360,
+      "pct": -0.027419907659428616
+     }
+    ],
+    "risks": [],
+    "recommendations": [
+     "Investigate traffic/footfall \u2014 customer count -4.1%.",
+     "Check kitchen product mix / MTO throughput \u2014 kitchen sales -2.7%."
+    ]
+   },
+   {
+    "id": "1002",
+    "name": "Maple Junction",
+    "ytd_attainment": 0.7106673439886176,
+    "ytd_variance_pct": -0.2893326560113824,
+    "ytd_actual": 1341617,
+    "ytd_budget": 1887827,
+    "month": "Jul",
+    "prev_month": "Jun",
+    "revenue_change_pct": 0.04048260686824734,
+    "month_attainment": 0.7240850091533496,
+    "month_variance_pct": -0.27591499084665044,
+    "headline": "Maple Junction: revenue up 4.0% vs Jun (attainment 72% of budget).",
+    "drivers": [
+     {
+      "key": "avg_ticket",
+      "label": "Average ticket",
+      "dollars": 13565.325535582362,
+      "pct": 0.06890965507006129
+     },
+     {
+      "key": "cstore",
+      "label": "C-Store sales",
+      "dollars": 6149,
+      "pct": 0.0356976987204793
+     },
+     {
+      "key": "customers",
+      "label": "Customer count",
+      "dollars": -5378.325535582369,
+      "pct": -0.026594434868259048
+     },
+     {
+      "key": "kitchen",
+      "label": "Kitchen sales",
+      "dollars": 2038,
+      "pct": 0.0679718507154054
+     }
+    ],
+    "risks": [],
+    "recommendations": [
+     "Investigate traffic/footfall \u2014 customer count -2.7%."
+    ]
+   },
+   {
+    "id": "1003",
+    "name": "Harbor Point",
+    "ytd_attainment": 0.7459500338517533,
+    "ytd_variance_pct": -0.25404996614824665,
+    "ytd_actual": 1553523,
+    "ytd_budget": 2082610,
+    "month": "Jul",
+    "prev_month": "Jun",
+    "revenue_change_pct": 0.022957224711610675,
+    "month_attainment": 0.7214203035686124,
+    "month_variance_pct": -0.2785796964313876,
+    "headline": "Harbor Point: revenue up 2.3% vs Jun (attainment 72% of budget).",
+    "drivers": [
+     {
+      "key": "avg_ticket",
+      "label": "Average ticket",
+      "dollars": 6329.598945518452,
+      "pct": 0.026806999048994126
+     },
+     {
+      "key": "cstore",
+      "label": "C-Store sales",
+      "dollars": 3526,
+      "pct": 0.017579984942837627
+     },
+     {
+      "key": "kitchen",
+      "label": "Kitchen sales",
+      "dollars": 1915,
+      "pct": 0.05255646732716744
+     },
+     {
+      "key": "customers",
+      "label": "Customer count",
+      "dollars": -888.5989455184534,
+      "pct": -0.0037492677211482133
+     }
+    ],
+    "risks": [
+     {
+      "key": "gp_after",
+      "label": "GP% after discount",
+      "delta_pts": -0.025399999999999978,
+      "note": "GP% after discount fell 2.5 pts"
+     }
+    ],
+    "recommendations": [
+     "Investigate traffic/footfall \u2014 customer count -0.4%.",
+     "Review food cost, supplier pricing and waste \u2014 gp% after discount fell 2.5 pts."
+    ]
+   },
+   {
+    "id": "1004",
+    "name": "Prairie Gate",
+    "ytd_attainment": 0.4906209037526126,
+    "ytd_variance_pct": -0.5093790962473874,
+    "ytd_actual": 1158432,
+    "ytd_budget": 2361155,
+    "month": "Jul",
+    "prev_month": "Jun",
+    "revenue_change_pct": -0.01644963069404917,
+    "month_attainment": 0.4816005256601552,
+    "month_variance_pct": -0.5183994743398448,
+    "headline": "Prairie Gate: revenue down 1.6% vs Jun (attainment 48% of budget).",
+    "drivers": [
+     {
+      "key": "customers",
+      "label": "Customer count",
+      "dollars": -18163.625714285714,
+      "pct": -0.10155844155844156
+     },
+     {
+      "key": "avg_ticket",
+      "label": "Average ticket",
+      "dollars": 15221.625714285701,
+      "pct": 0.09472937896152368
+     },
+     {
+      "key": "kitchen",
+      "label": "Kitchen sales",
+      "dollars": -1942,
+      "pct": -0.075859375
+     },
+     {
+      "key": "cstore",
+      "label": "C-Store sales",
+      "dollars": -1000,
+      "pct": -0.0065253280608682605
+     }
+    ],
+    "risks": [],
+    "recommendations": [
+     "Investigate traffic/footfall \u2014 customer count -10.2%.",
+     "Check kitchen product mix / MTO throughput \u2014 kitchen sales -7.6%."
+    ]
+   }
+  ]
+ }
 }

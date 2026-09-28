@@ -2,8 +2,8 @@ from datetime import date
 
 import pytest
 
-from src.food_variance.calculator import calculate_variance
-from src.food_variance.models import StoreSnapshot
+from food_variance.calculator import calculate_variance
+from food_variance.models import StoreSnapshot
 
 
 def snapshot(**kwargs):

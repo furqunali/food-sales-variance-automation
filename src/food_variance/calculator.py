@@ -28,7 +28,7 @@ def calculate_variance(
     mix_variance = current.mix_total() - current.kitchen_sales
 
     warnings: list[str] = []
-    if abs(mix_variance) > tolerance:
+    if current.product_mix and abs(mix_variance) > tolerance:
         warnings.append("product mix does not reconcile with kitchen sales")
     if current.kitchen_sales < 0 or current.cstore_sales < 0:
         warnings.append("sales values contain a negative amount")

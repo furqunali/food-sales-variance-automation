@@ -1,1 +1,14 @@
-"""Stable serialization boundary for variance results."""\nfrom __future__ import annotations\n\nfrom dataclasses import asdict\n\nfrom .models import VarianceResult\n\n\ndef result_to_dict(result: VarianceResult) -> dict[str, object]:\n    """Return a JSON-ready representation with stable field names."""\n    data = asdict(result)\n    data["period"] = result.period.isoformat()\n    data["warnings"] = list(result.warnings)\n    return data\n
+"""Stable serialization boundary for variance results."""
+from __future__ import annotations
+
+from dataclasses import asdict
+
+from .models import VarianceResult
+
+
+def result_to_dict(result: VarianceResult) -> dict[str, object]:
+    """Return a JSON-ready representation with stable field names."""
+    data = asdict(result)
+    data["period"] = result.period.isoformat()
+    data["warnings"] = list(result.warnings)
+    return data

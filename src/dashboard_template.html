@@ -106,6 +106,8 @@
   /* insights */
   .ins{background:var(--surface);border:1px solid var(--ring);border-left:4px solid var(--accent);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
   .ins.warn{border-left-color:var(--bad)}.ins.good{border-left-color:var(--good)}
+  .muted{color:var(--ink-2)}
+  ul.cfo{margin:.1rem 0 .55rem;padding-left:18px} ul.cfo li{margin:3px 0;font-size:12.5px;line-height:1.45}
   .ins h4{margin:0 0 5px;font-size:13px}.ins p{margin:0;font-size:12px;color:var(--ink-2);line-height:1.5}
   footer{margin-top:30px;padding:16px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   #tip{position:fixed;pointer-events:none;background:var(--brand);color:#fff;padding:8px 11px;border-radius:8px;font-size:12px;box-shadow:0 6px 20px rgba(0,0,0,.3);opacity:0;transition:opacity .1s;z-index:99;white-space:nowrap}
@@ -180,6 +182,7 @@ const STORES=[
 const MD=__MONTHLY__;            // per-store monthly rows
 const EX=__EXTRA__;              // per-store ending-inventory + price-override
 const FLAGS=__FLAGS__;           // {sid:{metric:note}} pending 3-month-avg review flags (cleared on approval)
+const INS=__INSIGHTS__;          // AI-CFO insights: group + per-store {headline, drivers, risks, recommendations}
 // Group kitchen product-mix (latest month, summed across stores) — derived from the
 // injected data so it always matches the workbook / sample; never hardcoded.
 const MIX=[["hotgrab","Hot Grab"],["mtofood","MTO Food"],["delivery","Delivery"],["mtocoffee","MTO Coffee & Bev"],["coldgrab","Cold Grab"],["bakery","Bakery"],["catering","Catering"],["midax","Midax"]]
@@ -314,6 +317,32 @@ function buildOverview(){
  ]).map(i=>`<div class="ins ${i.cls}"><h4>${i.h}</h4><p>${i.p}</p></div>`).join("");
 }
 
+function buildCFO(){
+ const g=INS.group;
+ let h=`<div class="phead"><h1>🧠 AI CFO — what changed, why &amp; what to investigate</h1><div class="badge">Driver analysis · latest month vs prior · YTD Jan–${LAST}</div></div>`;
+ h+=`<div class="rbanner ok"><span class="ic">🧠</span><div>${g.headline}</div></div>`;
+ h+=kpiRow([
+  {lab:"Group Attainment (YTD)",val:pct(g.ytd_attainment),cls:"accent",note:pct(g.ytd_variance_pct)+" vs budget"},
+  {lab:"YTD Gap to Budget",val:fmtM(g.gap_dollars),cls:"bad",note:"below plan"},
+  {lab:"Best Store",val:g.best_store.name,cls:"good",note:pct(g.best_store.attainment)+" attainment"},
+  {lab:"Needs Attention",val:g.worst_store.name,cls:"bad",note:pct(g.worst_store.attainment)+" attainment"}
+ ]);
+ h+=`<h2 class="sec">Per-store — what changed, why, and what to investigate</h2><div class="grid2">`;
+ INS.stores.forEach(s=>{
+  const up=s.revenue_change_pct>=0, arrow=up?"▲":"▼";
+  const drivers=(s.drivers||[]).slice(0,3).map(d=>`<li><b>${d.label}</b>: ${(d.pct*100).toFixed(1)}% <span class="muted">(${d.dollars>=0?"+":""}${fmtD(d.dollars)})</span></li>`).join("") || "<li>—</li>";
+  const risks=(s.risks||[]).length?(s.risks.map(r=>`<li>${r.note}</li>`).join("")):"<li class='muted'>No margin risks flagged.</li>";
+  const recs=(s.recommendations||[]).length?(s.recommendations.map(r=>`<li>${r}</li>`).join("")):"<li class='muted'>Maintain the current plan.</li>";
+  h+=`<div class="panel"><h3>${s.name} <span class="id">${s.id}</span></h3>
+    <p class="cap">Revenue <b style="color:${up?'var(--good)':'var(--bad)'}">${arrow} ${(Math.abs(s.revenue_change_pct)*100).toFixed(1)}%</b> vs prior · attainment <b>${pct(s.month_attainment)}</b> of monthly budget.</p>
+    <p style="margin:.4rem 0 .2rem"><b>Why — top drivers</b></p><ul class="cfo">${drivers}</ul>
+    <p style="margin:.4rem 0 .2rem"><b>Risk</b></p><ul class="cfo">${risks}</ul>
+    <p style="margin:.4rem 0 .2rem"><b>Investigate</b></p><ul class="cfo">${recs}</ul></div>`;
+ });
+ h+=`</div><p class="cap" style="margin-top:14px">Every figure above is computed deterministically from the monthly data (customers × average ticket decomposition, exact to the dollar) — no estimates. Sample data is fictitious.</p>`;
+ $("#pg-cfo").innerHTML=h;
+}
+
 function buildStore(s){
  const rows=MD[s.id], y=AG[s.id].y,j=rows[CUR],a=y.actual/y.budget,st=statusOf(a);
  const fl=FLAGS[s.id]||{}, LI=MONS.length-1, flKeys=Object.keys(fl);
@@ -431,7 +460,7 @@ function buildData(){
 }
 
 /* ================= ROUTER ================= */
-const PAGES=[{id:"over",label:"Overview"}].concat(STORES.map(s=>({id:s.id,label:s.name+" "+s.id}))).concat([{id:"trends",label:"Trends"},{id:"data",label:"Data"}]);
+const PAGES=[{id:"over",label:"Overview"},{id:"cfo",label:"🧠 AI CFO"}].concat(STORES.map(s=>({id:s.id,label:s.name+" "+s.id}))).concat([{id:"trends",label:"Trends"},{id:"data",label:"Data"}]);
 $("#tabs").innerHTML=PAGES.map(p=>`<button data-tab="${p.id}">${p.label}</button>`).join("");
 PAGES.forEach(p=>{const d=document.createElement("div");d.className="page";d.id="pg-"+p.id;$("#app").appendChild(d);});
 let built={},curTab="over";
@@ -440,7 +469,7 @@ function show(id){
  curTab=id;
  $$("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===id));
  $$(".page").forEach(p=>p.classList.remove("on"));$("#pg-"+id).classList.add("on");
- if(!built[id]){built[id]=1;if(id==="over")buildOverview();else if(id==="trends")buildTrends();else if(id==="data")buildData();else buildStore(STORES.find(s=>s.id===id));}
+ if(!built[id]){built[id]=1;if(id==="over")buildOverview();else if(id==="cfo")buildCFO();else if(id==="trends")buildTrends();else if(id==="data")buildData();else buildStore(STORES.find(s=>s.id===id));}
  if(location.hash.slice(1)!==id)history.replaceState(null,"","#"+id);
  window.scrollTo({top:0});
 }

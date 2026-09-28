@@ -7,9 +7,10 @@ into one verified workbook and a self-contained, director-ready dashboard. In on
 
 [![Live Demo](https://img.shields.io/badge/▶_Live_Demo-GitHub_Pages-1baf7a?style=for-the-badge)](https://furqunali.github.io/food-sales-variance-automation/)
 [![CI](https://github.com/furqunali/food-sales-variance-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/furqunali/food-sales-variance-automation/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![tests](https://img.shields.io/badge/tests-174%20passing-2ea44f)
+[![License: Review-Only](https://img.shields.io/badge/License-Review--Only-b45309.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
-![Zero dependencies](https://img.shields.io/badge/demo-zero_dependencies-success)
+![AI CFO](https://img.shields.io/badge/AI_CFO-explains_the_why-1f3864)
 
 **[▶ Open the live interactive demo](https://furqunali.github.io/food-sales-variance-automation/)** &nbsp;·&nbsp; no data or install required
 
@@ -36,6 +37,12 @@ the finished dashboard back against the original documents.
 
 ## ✨ Highlights
 
+- **🧠 AI-CFO analysis** — a new *"AI CFO"* tab that doesn't just show the numbers, it **explains
+  them**: *what changed → why (ranked drivers) → the risk → what to investigate* — e.g.
+  *"Revenue ▼8.4% vs prior — drivers: customer count −6.1%, average ticket −2.4%; risk: INIR
+  fell 2.1 pts; investigate traffic/footfall and supplier pricing."* Every conclusion is derived
+  deterministically from the data (customers × average-ticket decomposition, exact to the dollar),
+  and the engine ([`src/analytics.py`](src/analytics.py)) is covered by **174 unit tests**.
 - **Multi-modal ingestion** — structured `.xlsx`, a digital PDF, a **scanned image PDF**, and
   screenshots, each read the right way (openpyxl / pdfplumber / AI vision).
 - **Three verification gates** — internal consistency, 3-month trend deviation, and a
@@ -136,4 +143,7 @@ Pages.
 
 ## 📜 License
 
-[MIT](LICENSE) © 2026 Furqan Ali — *Senior AI Engineer*
+**Review-Only** © 2026 Furqan Ali — *Senior AI Engineer.* This repository is public **so it
+can be reviewed**; it is **not** open source. You may read and evaluate the code, but you may
+**not use, copy, modify, deploy, or redistribute it — including its methodology — without prior
+written permission.** See [`LICENSE`](LICENSE).

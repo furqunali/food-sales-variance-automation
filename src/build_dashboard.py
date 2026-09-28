@@ -24,6 +24,7 @@ This is the HTML half of the monthly automation. See 03_Automation for the full
 """
 import json, os, glob, warnings
 import openpyxl
+import analytics  # AI-CFO insight engine (pure, unit-tested; same as the demo path)
 warnings.filterwarnings("ignore")  # openpyxl data-validation extension warning on the DR file
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -194,10 +195,13 @@ def main():
     flags = load_flags()
     npend = sum(len(v) for v in flags.values())
     print(f"  Review flags pending: {npend}" + (" (values deviate >1.5% from 3-month avg)" if npend else ""))
+    store_meta = [dict(id=sid, name=nm) for (nm, sid, *_ ) in STORES]
+    insights = analytics.build_insights(months, data, extra, store_meta)
     html = (html.replace("__MONTHLY__", json.dumps(data))
                 .replace("__EXTRA__", json.dumps(extra))
                 .replace("__MONS__", json.dumps(months))
-                .replace("__FLAGS__", json.dumps(flags)))
+                .replace("__FLAGS__", json.dumps(flags))
+                .replace("__INSIGHTS__", json.dumps(insights)))
     with open(OUT, "w", encoding="utf-8") as f:
         f.write(html)
     print("Dashboard written:", OUT)

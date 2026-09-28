@@ -19,6 +19,15 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install test tooling
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Run analytics test suite
+        shell: bash
+        run: |
+          pytest -q | tee out.txt
+          { echo "## ✅ Test results"; echo '```'; tail -n 3 out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Build demo from synthetic data (no external deps)
         run: python sample/generate_sample.py
 
@@ -30,7 +39,7 @@ jobs:
           echo "demo size: ${bytes} bytes"
           test "$bytes" -gt 40000 || { echo "demo suspiciously small"; exit 1; }
           # placeholders must be fully substituted
-          ! grep -q "__MONTHLY__\|__EXTRA__\|__MONS__\|__FLAGS__" demo/dashboard-demo.html \
+          ! grep -q "__MONTHLY__\|__EXTRA__\|__MONS__\|__FLAGS__\|__INSIGHTS__" demo/dashboard-demo.html \
             || { echo "unsubstituted template placeholder found"; exit 1; }
           echo "CI checks passed."
 
